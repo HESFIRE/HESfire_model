@@ -229,9 +229,9 @@ powereval=2
 # Boundaries of Fire fraction classes for optimization/evaluation
 classbound=array([0,1,5,10,20,35,50,200])
 
-#######################
-### 1.f. Input data ###
-#######################
+#############################
+### 1.f. Observation data ###
+#############################
 GFEDdata='GFED_BA_natural_Fireviz'
 
 ###################
@@ -1815,41 +1815,41 @@ else:
 #######################################
 ###### MAPPING FOR VISUAL INSPECTION
 #######################################
-mapavdur,latmap,lonmap=yanbuildmap(aavdur[2:,4],aavdur[2:,0:4],res)
-mapmaxsize,latmap,lonmap=yanbuildmap(amaxsize[2:,4],amaxsize[2:,0:4],res)
-mapmaxdur,latmap,lonmap=yanbuildmap(amaxdur[2:,4],amaxdur[2:,0:4],res)
-mapforest,latmap,lonmap=yanbuildmap(atotbaforest[2:,4],atotbaforest[2:,0:4],res)
-mapshrubs,latmap,lonmap=yanbuildmap(atotbashrubs[2:,4],atotbashrubs[2:,0:4],res)
-mapgrass,latmap,lonmap=yanbuildmap(atotbagrass[2:,4],atotbagrass[2:,0:4],res)
-maptotba,latmap,lonmap=yanbuildmap(divide(atotba[2:,4],gridsizesel),atotba[2:,0:4],res)
-
-# Evaluation								
-borders=yanborders('Regions')
-latspan=[min(mba[2:,2])-res/2,max(mba[2:,2])+res/2]
-lonspan=[min(mba[2:,3])-res/2,max(mba[2:,3])+res/2]
-mapnames=['Observation','Modeled','Diffclass','IAV Corr','Diffseas', 'burnedarea',]
-maps=[mapoptclass,mapmodclass,mapclassdiff,mapiav,mapseasdiff, mapforest]
-setbad=[0,0,nan,nan,nan,nan]
-vminval=[0,0,-len(classbound),-1,-6,0]
-vmaxval=[len(classbound),len(classbound),len(classbound),1,6,40000]
-barmax, barmin, cmapmirror = yancolim(-len(classbound),len(classbound),-len(classbound),len(classbound))
-barmax, barmin, cmapnorm = yancolim(0,len(classbound),0,len(classbound))
-colormaptouse=[cmapnorm,cmapnorm,cmapmirror,cmapmirror,cmapmirror,cmapnorm]
-								
-								
-for fignum in range(len(mapnames)):
-	fig=plt.figure(figsize=(18,6))
-	a1 = plt.subplot2grid((1,20),(0,0),colspan=19)
-	b1 = plt.subplot2grid((1,20),(0,19))
-	cmap = matplotlib.cm.BrBG
-	cmap.set_bad('grey',setbad[fignum])
-	ax1 = a1.imshow(maps[fignum],vmin = vminval[fignum], vmax=vmaxval[fignum],extent=[lonspan[0],lonspan[1],latspan[0],latspan[1]],cmap=colormaptouse[fignum],interpolation='nearest',origin='upper', aspect='equal')
-	ax2 = a1.plot(borders[0,:], borders[1,:],color='black',linestyle='-',linewidth=0.4)
-	a1.axis([lonspan[0],lonspan[1],latspan[0],latspan[1]])
-	a1.set_title(mapnames[fignum])
-	a1.grid(True)
-	colbar1=fig.colorbar(ax1,cax=b1,orientation='vertical')
-	plt.savefig(outpath+mapnames[fignum]+'.png',format='png')
+# mapavdur,latmap,lonmap=yanbuildmap(aavdur[2:,4],aavdur[2:,0:4],res)
+# mapmaxsize,latmap,lonmap=yanbuildmap(amaxsize[2:,4],amaxsize[2:,0:4],res)
+# mapmaxdur,latmap,lonmap=yanbuildmap(amaxdur[2:,4],amaxdur[2:,0:4],res)
+# mapforest,latmap,lonmap=yanbuildmap(atotbaforest[2:,4],atotbaforest[2:,0:4],res)
+# mapshrubs,latmap,lonmap=yanbuildmap(atotbashrubs[2:,4],atotbashrubs[2:,0:4],res)
+# mapgrass,latmap,lonmap=yanbuildmap(atotbagrass[2:,4],atotbagrass[2:,0:4],res)
+# maptotba,latmap,lonmap=yanbuildmap(divide(atotba[2:,4],gridsizesel),atotba[2:,0:4],res)
+# 
+# # Evaluation								
+# borders=yanborders('Regions')
+# latspan=[min(mba[2:,2])-res/2,max(mba[2:,2])+res/2]
+# lonspan=[min(mba[2:,3])-res/2,max(mba[2:,3])+res/2]
+# mapnames=['Observation','Modeled','Diffclass','IAV Corr','Diffseas', 'burnedarea',]
+# maps=[mapoptclass,mapmodclass,mapclassdiff,mapiav,mapseasdiff, mapforest]
+# setbad=[0,0,nan,nan,nan,nan]
+# vminval=[0,0,-len(classbound),-1,-6,0]
+# vmaxval=[len(classbound),len(classbound),len(classbound),1,6,40000]
+# barmax, barmin, cmapmirror = yancolim(-len(classbound),len(classbound),-len(classbound),len(classbound))
+# barmax, barmin, cmapnorm = yancolim(0,len(classbound),0,len(classbound))
+# colormaptouse=[cmapnorm,cmapnorm,cmapmirror,cmapmirror,cmapmirror,cmapnorm]
+# 								
+# 								
+# for fignum in range(len(mapnames)):
+# 	fig=plt.figure(figsize=(18,6))
+# 	a1 = plt.subplot2grid((1,20),(0,0),colspan=19)
+# 	b1 = plt.subplot2grid((1,20),(0,19))
+# 	cmap = matplotlib.cm.BrBG
+# 	cmap.set_bad('grey',setbad[fignum])
+# 	ax1 = a1.imshow(maps[fignum],vmin = vminval[fignum], vmax=vmaxval[fignum],extent=[lonspan[0],lonspan[1],latspan[0],latspan[1]],cmap=colormaptouse[fignum],interpolation='nearest',origin='upper', aspect='equal')
+# 	ax2 = a1.plot(borders[0,:], borders[1,:],color='black',linestyle='-',linewidth=0.4)
+# 	a1.axis([lonspan[0],lonspan[1],latspan[0],latspan[1]])
+# 	a1.set_title(mapnames[fignum])
+# 	a1.grid(True)
+# 	colbar1=fig.colorbar(ax1,cax=b1,orientation='vertical')
+# 	plt.savefig(outpath+mapnames[fignum]+'.png',format='png')
 																	
 
 # fig=plt.figure(figsize=(10,6))
