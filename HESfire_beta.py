@@ -7,14 +7,14 @@ import csv
 from numpy import *
 from copy import deepcopy
 #from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
-from yancolbar import *
-from yanutil import *
-from matplotlib.figure import Figure
-from matplotlib import pyplot as plt
-from matplotlib import colors
-from matplotlib.mlab import griddata
-from matplotlib import cm
-import matplotlib.cm
+#from yancolbar import *
+#from yanutil import *
+# from matplotlib.figure import Figure
+# from matplotlib import pyplot as plt
+# from matplotlib import colors
+# from matplotlib.mlab import griddata
+# from matplotlib import cm
+# import matplotlib.cm
 from scipy.stats import binom
 import random as rnd
 import scipy.interpolate
@@ -22,7 +22,7 @@ import time
 import shutil
 from scipy.stats import pearsonr
 import random
-import pylab
+#import pylab
 #import gc
 
 # FUNCTION: Projection experiment
@@ -61,7 +61,7 @@ def savesourcode(outpath,outfolder):
 		# !!!
 		print " WARNING: experiment folder already exists, overwriting (at end of fire cycle)"
 	try:
-		shutil.copy('./'+os.path.basename(__file__), outpath+'SourceCodeFireModel.py')
+		shutil.copy('./'+os.path.basename(__file__), outpath+'SourceCodeHESfire.py')
 	except:
 		print "WARNING: could not save source code file"
 
@@ -1905,7 +1905,7 @@ else:
 
 
 
-plt.show()
+#plt.show()
 
 print '11 12 wet head start spread stoch ba out fragm up out1 out2 out3 out4 perf gridells wind'
 print ceil(array([elapsed_11,elapsed_12,elapsed_wet,elapsed_head,elapsed_start,elapsed_spread,elapsed_stoch,elapsed_ba,elapsed_out,elapsed_fragm,elapsed_up,elapsed_out1,elapsed_out2,elapsed_out3,elapsed_out4,elapsed_perf,elapsed_gridcells,elapsed_wind])/((yearE-yearB+1)*totcombs))
